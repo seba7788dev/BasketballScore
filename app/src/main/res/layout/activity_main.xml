@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/local"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <Button
+        android:id="@+id/botonRestart"
+        android:layout_width="72dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="132dp"
+        android:text="Res"
+        app:layout_constraintEnd_toEndOf="@+id/visitanteMenos"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/localMenos" />
+
+    <Button
+        android:id="@+id/visitanteMenos"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="108dp"
+        android:text="-1"
+        app:layout_constraintEnd_toEndOf="@+id/localMenos"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonRestart" />
+
+    <Button
+        android:id="@+id/localMenos"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="164dp"
+        android:text="-1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/localPuntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="14"
+        android:textColor="@color/black"
+        android:textSize="74dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/visitantePuntos"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/visitantePuntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
+        android:layout_marginEnd="164dp"
+        android:text="14"
+        android:textSize="74dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/localPuntos" />
+
+    <Button
+        android:id="@+id/localMasUno"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="16dp"
+        android:text="+1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSiguiente"
+        android:layout_width="72dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="60dp"
+        android:text="Fin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/visitanteMasUno"
+        app:layout_constraintTop_toBottomOf="@+id/localMasDos" />
+
+    <Button
+        android:id="@+id/visitanteMasUno"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="8dp"
+        android:text="+1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSiguiente" />
+
+    <Button
+        android:id="@+id/visitanteMasDos"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:text="+2"
+        app:layout_constraintEnd_toEndOf="@+id/visitanteMasUno"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/visitanteMasUno"
+        app:layout_constraintTop_toBottomOf="@+id/visitanteMasUno" />
+
+    <Button
+        android:id="@+id/localMasDos"
+        android:layout_width="0dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:text="+2"
+        app:layout_constraintEnd_toEndOf="@+id/localMasUno"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/localMasUno"
+        app:layout_constraintTop_toBottomOf="@+id/localMasUno" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visitante"
+        android:textSize="34dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/visitantePuntos"
+        app:layout_constraintVertical_bias="0.528" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
