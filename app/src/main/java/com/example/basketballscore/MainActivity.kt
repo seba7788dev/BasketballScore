@@ -70,6 +70,20 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnSiguiente.setOnClickListener {
             val intent = Intent(this, FinalResultActivity::class.java)
+            intent.putExtra(FinalResultActivity.PUNTAJE_LOCAL,localPuntos)
+            intent.putExtra(FinalResultActivity.PUNTAJE_VISITA,visitantePuntos)
+            val mensaje= when {
+                localPuntos>visitantePuntos -> {
+                    "GANO LOCAL"
+                }
+                localPuntos<visitantePuntos -> {
+                    "GANO VISITANTE"
+                }
+                else -> {
+                    "EMPATE"
+                }
+            }
+            intent.putExtra(FinalResultActivity.mensajeAMostrar,mensaje)
             startActivity(intent)
         }
     }
