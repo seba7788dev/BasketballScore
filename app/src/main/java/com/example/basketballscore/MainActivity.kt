@@ -5,121 +5,140 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.basketballscore.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     var localPuntos:Int=0
     var visitantePuntos:Int=0
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel:MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding= ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        binding.localPuntos.text=localPuntos.toString()
-        binding.visitantePuntos.text=visitantePuntos.toString()
+        setupButtons()
 
 
+      //  binding.localPuntos.text = localPuntos.toString()
+       // binding.visitantePuntos.text = visitantePuntos.toString()
+
+
+
+    }
+    fun setupButtons() {
         binding.botonRestart.setOnClickListener {
-            localPuntos=0
-            visitantePuntos=0
+           resetScore()
             binding.localPuntos.text=localPuntos.toString()
             binding.visitantePuntos.text=visitantePuntos.toString()
         }
 
         binding.localMenos.setOnClickListener {
-            if (binding.localPuntos.text!="0"){
-                localPuntos-=1
-                binding.localPuntos.text=localPuntos.toString()
-
-            }
-
-
+            viewModel.decreaseLocalScore()
+            binding.localPuntos.text=viewModel.localScore.toString()
         }
 
+
         binding.visitanteMenos.setOnClickListener {
-            if (binding.visitantePuntos.text!="0"){
-                visitantePuntos-=1
-                binding.visitantePuntos.text=visitantePuntos.toString()
-
-            }
-
+        viewModel.decreaseVisitorScore()
+            binding.visitantePuntos.text=viewModel.visitorScore.toString()
 
         }
 
         binding.localMasUno.setOnClickListener {
-            sumarUnPuntoLocal(binding.localPuntos)
+                addPointToScore(1,true)
+                binding.localPuntos.text=viewModel.localScore.toString()
         }
 
         binding.localMasDos.setOnClickListener {
-            sumarDosPuntosLocal(binding.localPuntos)
+            addPointToScore(2,true)
+            binding.localPuntos.text=viewModel.localScore.toString()
         }
 
         binding.visitanteMasUno.setOnClickListener {
 
-            sumarUnPuntoVisita(binding.visitantePuntos)
+            addPointToScore(1,false)
+            binding.visitantePuntos.text=viewModel.visitorScore.toString()
 
         }
 
         binding.visitanteMasDos.setOnClickListener {
 
-            sumarDosPuntosVisita(binding.visitantePuntos)
+            addPointToScore(2,false)
+            binding.visitantePuntos.text=viewModel.visitorScore.toString()
+
         }
 
         binding.btnSiguiente.setOnClickListener {
             val intent = Intent(this, FinalResultActivity::class.java)
-            intent.putExtra(FinalResultActivity.PUNTAJE_LOCAL,localPuntos)
-            intent.putExtra(FinalResultActivity.PUNTAJE_VISITA,visitantePuntos)
-            val mensaje= when {
-                localPuntos>visitantePuntos -> {
+            intent.putExtra(FinalResultActivity.PUNTAJE_LOCAL, localPuntos)
+            intent.putExtra(FinalResultActivity.PUNTAJE_VISITA, visitantePuntos)
+            val mensaje = when {
+                localPuntos > visitantePuntos -> {
                     "GANO LOCAL"
                 }
-                localPuntos<visitantePuntos -> {
+                localPuntos < visitantePuntos -> {
                     "GANO VISITANTE"
                 }
                 else -> {
                     "EMPATE"
                 }
             }
-            intent.putExtra(FinalResultActivity.mensajeAMostrar,mensaje)
+            intent.putExtra(FinalResultActivity.mensajeAMostrar, mensaje)
             startActivity(intent)
         }
     }
-    fun sumarUnPuntoLocal(textView: TextView){
-        localPuntos+=1
-        textView.text=localPuntos.toString()
 
-    }
-    fun sumarDosPuntosLocal(textView: TextView){
-        localPuntos+=2
-        textView.text=localPuntos.toString()
-
+    fun resetScore(){
+        viewModel.resetScore()
     }
 
-    fun sumarUnPuntoVisita(textView: TextView){
-        visitantePuntos+=1
-        textView.text=visitantePuntos.toString()
+    fun addPointToScore(points:Int,isLocal:Boolean){
 
-    }
-
-    fun sumarDosPuntosVisita(textView: TextView){
-        visitantePuntos+=2
-        textView.text=visitantePuntos.toString()
+        viewModel.addPointToScore(points,isLocal)
+        if (isLocal){
+            binding.localPuntos.text
+        }else{
+            binding.visitantePuntos.text
+        }
 
     }
 
 
 
-    //funca para el orto
-    fun sumarPuntos(textView: TextView,cantPuntos:Int, localOVisita:Int){
-        var cantidadPuntos=cantPuntos
-        var localia=localOVisita
 
-        localia+=cantidadPuntos
-        textView.text=localia.toString()
-    }
+        fun sumarUnPuntoLocal(textView: TextView) {
+            localPuntos += 1
+            textView.text = localPuntos.toString()
+
+        }
+
+        fun sumarDosPuntosLocal(textView: TextView) {
+            localPuntos += 2
+            textView.text = localPuntos.toString()
+
+        }
+
+        fun sumarUnPuntoVisita(textView: TextView) {
+            visitantePuntos += 1
+            textView.text = visitantePuntos.toString()
+
+        }
+
+        fun sumarDosPuntosVisita(textView: TextView) {
+            visitantePuntos += 2
+            textView.text = visitantePuntos.toString()
+
+        }
+
+
+
+
 
 
 
