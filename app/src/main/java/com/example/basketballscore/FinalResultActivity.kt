@@ -1,6 +1,5 @@
 package com.example.basketballscore
 
-import android.icu.number.NumberFormatter.with
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.basketballscore.databinding.ActivityFinalResultBinding
